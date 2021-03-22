@@ -12,7 +12,7 @@ Top will check for two frames if box86 is running, if it is the output will be "
 If not an error occurs, "detect_crash" will be set to 1 afterwards the if loop breaks the second while loop.
 The scripts starts from the top and Teamspeak will be executet again. 
 
-If Futer projects require the use of multipe Box86 instanses the skript must be modified to fetch the PID number
+If future projects require the use of multipe Box86 instanses the skript must be modified to fetch the PID number
 at programm start and the top command must be modified to:
 
 >top -n 2 | grep -o "pidnumber"
