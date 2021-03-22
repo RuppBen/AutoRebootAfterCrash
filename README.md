@@ -1,20 +1,21 @@
 # AutoRebootAfterCrash
 Eternal provisional bash script
 
-I set up a Teamspeak server on my Raspberry PI 4 with box86, it crashes some times.
-I did not find a cause for the crashes so I desided on a shell script.
+I set up a Teamspeak server on my Raspberry PI 4 using box86, it crashes some times.
+Until I find a better solution this script will automaticly reactivate my Server.
 
-There are no other progrmmas running on my PI using Box86, therefore I wrote a loop, that 
-chechs if Box86 is running:
+Teamspeak is the only application being emulated. With that in mind, I desidet that this will do:
+
 >top -n 2 | grep -o Box86
 
-If succsessfull the outpu will be: "box86".
-The command checks within 2 frames with the option "-n", one frame is to short. Very rarely this option
-will print: "box86 box86". To prevent logical errors one IF loop checks if this has happend.
-If the server chrashes the option "top -n 2 | grep -o Box86" exits with error code 1 and another IF loop 
-will restart the server.
+Top will check for two frames if box86 is running, if it is the output will be "box86" and the loop continues.
+If not an error occurs, "detect_crash" will be set to 1 afterwards the if loop breaks the second while loop.
+The scripts starts from the top and Teamspeak will be executet again. 
 
-If Futer projects require the use of multipe Box86 instanses the skript must be modified to look for the PID number
-and not for the software name.
+If Futer projects require the use of multipe Box86 instanses the skript must be modified to fetch the PID number
+at programm start and the top command must be modified to:
 
+>top -n 2 | grep -o "pidnumber"
+
+This script must be executed in Teamspak Folder.
 This script has no option for exit.
